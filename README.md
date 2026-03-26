@@ -1,4 +1,4 @@
-💸 cademeudinheiro
+# 💸 cademeudinheiro
 Um jeito menos doloroso de descobrir para onde seu dinheiro está indo. Em vez de você gastar horas categorizando extratos bancários, a IA (Gemini 3 Flash) faz o trabalho sujo de entender o que é "Açougue do Zé" e jogar na categoria certa.
 
 ## 🚀 O que faz?
