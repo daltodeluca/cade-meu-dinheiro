@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+💸 cademeudinheiro
+Um jeito menos doloroso de descobrir para onde seu dinheiro está indo. Em vez de você gastar horas categorizando extratos bancários, a IA (Gemini 3 Flash) faz o trabalho sujo de entender o que é "Açougue do Zé" e jogar na categoria certa.
 
-## Getting Started
+## 🚀 O que faz?
+Parsing de CSV: Lê seu extrato via PapaParse.
 
-First, run the development server:
+Categorização Inteligente: Usa IA para agrupar gastos de forma granular (nada de "Outros" ou "Pix Enviado").
 
-```bash
+Visualização: Gráficos que mostram a realidade (via Recharts).
+
+Dark Mode: Essencial para quando você for olhar os gastos à noite e não quiser ficar cego com o brilho da tela.
+
+## 🛠️ Tech Stack
+Framework: Next.js 16 + Turbopack (Velocidade de 2026).
+
+Estilo: Tailwind CSS v4 (A arquitetura nova).
+
+Cérebro: Gemini 3 Flash API.
+
+Ícones: Lucide React.
+
+Arquitetura: Componentes modulares, Custom Hooks e Tipagem Sênior.
+
+## ⚙️ Como rodar o projeto
+Clone o repositório:
+
+Bash
+git clone https://github.com/daltodeluca/cademeudinheiro.git
+Instale as dependências:
+
+Bash
+npm install
+Configure as variáveis de ambiente:
+Crie um arquivo .env.local na raiz e adicione sua chave do Google:
+
+Snippet de código
+GEMINI_API_KEY=sua_chave_aqui
+Inicie o motor:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🏗️ Arquitetura
+O projeto foi refatorado para seguir padrões de mercado, separando as responsabilidades:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+/components: UI atômica e reutilizável.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+/hooks: Toda a lógica de estado e parsing.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+/services: Comunicação isolada com a API do Gemini.
 
-## Learn More
+/types: Contratos de dados para garantir que nada quebre.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Licença
+Feito por Vinícius de Luca na InLuce Technologies.
