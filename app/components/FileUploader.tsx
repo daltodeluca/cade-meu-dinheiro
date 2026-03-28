@@ -12,22 +12,37 @@ export function FileUploader({ onFileUpload, loading }: Props) {
   };
 
   return (
-    <section className="bg-white dark:bg-slate-900 p-10 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 text-center animate-in zoom-in-95 duration-500">
-      <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Bem-vindo!</h2>
-      <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm">Suba seu extrato CSV e deixe a IA organizar tudo.</p>
+    <section className="card-premium text-center animate-in zoom-in-95 duration-500">
+      <h2 className="text-2xl font-black text-main mb-2 tracking-tight">
+        Bem-vindo!
+      </h2>
       
-      <div className="relative border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl p-12 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all cursor-pointer group">
+      <p className="text-soft mb-8 text-sm font-medium">
+        Suba seu extrato CSV e deixe a IA organizar tudo.
+      </p>
+      
+      <div className="relative border-2 border-dashed border-border rounded-3xl p-12 hover:bg-gold/5 transition-all cursor-pointer group overflow-hidden">
         <input 
           type="file" 
           accept=".csv" 
           onChange={handleFileChange} 
-          className="absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed" 
+          className="absolute inset-0 opacity-0 cursor-pointer z-20 disabled:cursor-not-allowed" 
           disabled={loading}
         />
-        <Upload className={`w-12 h-12 mx-auto mb-4 transition-transform ${loading ? 'text-blue-500 animate-bounce' : 'text-slate-300 group-hover:text-blue-500 group-hover:scale-110'}`} />
-        <p className="text-slate-600 dark:text-slate-300 font-bold">
-          {loading ? "A IA está processando..." : "Clique ou arraste seu CSV aqui"}
-        </p>
+
+        <div className="relative z-10">
+          <Upload className={`w-14 h-14 mx-auto mb-5 icon-premium ${
+            loading ? 'text-gold animate-bounce' : ''
+          }`} />
+          
+          <p className="text-main font-bold tracking-tight">
+            {loading ? "A IA está processando..." : "Clique ou arraste seu CSV aqui"}
+          </p>
+          
+          <p className="text-ghost text-[10px] uppercase tracking-[0.2em] mt-4 font-bold">
+            Formato aceito: .CSV (Bancos do Brasil)
+          </p>
+        </div>
       </div>
     </section>
   );

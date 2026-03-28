@@ -2,49 +2,83 @@ import { ChevronDown, TrendingDown } from 'lucide-react';
 import { Categoria } from '../types/finance';
 import { useState } from 'react';
 
+const parseValue = (val: any): number => {
+  if (typeof val === 'number') return val;
+  if (!val) return 0;
+  const clean = String(val).replace(/[R$\s.]/g, '').replace(',', '.');
+  return parseFloat(clean) || 0;
+};
+
 export function CategoryList({ categorias }: { categorias: Categoria[] }) {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
-      <div className="px-8 py-6 border-b border-slate-50 dark:border-slate-800 flex justify-between items-center">
-        <h2 className="text-xl font-bold dark:text-white">Resumo por Categoria</h2>
-        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Valor</span>
+    <div className="card-premium p-0 overflow-hidden">
+      
+      <div className="px-8 py-6 border-b border-border flex justify-between items-center bg-card/50">
+        <h2 className="title-premium mb-0">
+          <TrendingDown size={14} className="text-gold" /> Resumo por Categoria
+        </h2>
+        <span className="text-ghost text-[10px] font-black uppercase tracking-[0.2em]">
+          Valor Consolidado
+        </span>
       </div>
-      <div className="divide-y divide-slate-50 dark:divide-slate-800">
-        {categorias.map((cat) => (
-          <div key={cat.nome}>
-            <button 
-              onClick={() => setOpen(open === cat.nome ? null : cat.nome)}
-              className="w-full px-8 py-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-all"
-            >
-              <div className="text-left">
-                <p className="font-bold text-slate-800 dark:text-slate-100">{cat.nome}</p>
-                <p className="text-xs text-slate-400">{cat.descricao_da_categoria}</p>
-              </div>
-              <div className="flex items-center gap-4">
-                <span className={`font-black text-lg ${cat.valor_total < 0 ? 'text-red-500 dark:text-red-400' : 'text-emerald-500'}`}>
-                  {cat.valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                </span>
-                <ChevronDown className={`text-slate-300 transition-transform ${open === cat.nome ? 'rotate-180 text-blue-500' : ''}`} />
-              </div>
-            </button>
-            {open === cat.nome && (
-              <div className="bg-slate-50 dark:bg-slate-800/30 px-12 py-6 border-t border-slate-100 dark:border-slate-800">
-                <ul className="space-y-3">
-                  {cat.itens.map((item, i) => (
-                    <li key={i} className="flex justify-between text-sm border-b border-slate-200/40 dark:border-slate-700/40 pb-2 last:border-0">
-                      <span className="text-slate-600 dark:text-slate-400">{item.desc}</span>
-                      <span className={`font-bold ${item.valor < 0 ? 'text-red-500' : 'dark:text-slate-200'}`}>
-                        {item.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
+
+      <div className="divide-y divide-border">
+        {categorias.map((cat) => {
+          const valorLimpoTotal = parseValue(cat.valor_total);
+
+          return (
+            <div key={cat.nome}>
+              <button 
+                onClick={() => setOpen(open === cat.nome ? null : cat.nome)}
+                className="w-full px-8 py-7 flex items-center justify-between hover:bg-background/50 transition-all group"
+              >
+                <div className="text-left">
+                  <p className="font-bold text-main transition-colors group-hover:text-gold">
+                    {cat.nome}
+                  </p>
+                  <p className="text-xs text-soft font-light">
+                    {cat.descricao_da_categoria}
+                  </p>
+                </div>
+                
+                <div className="flex items-center gap-5">
+                  <span className={`value-premium text-lg ${
+                    valorLimpoTotal < 0 ? 'text-red-500' : 'text-gold'
+                  }`}>
+                    {valorLimpoTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  </span>
+                  <ChevronDown className={`text-ghost transition-transform duration-300 ${
+                    open === cat.nome ? 'rotate-180 text-gold' : ''
+                  }`} />
+                </div>
+              </button>
+              
+              {open === cat.nome && (
+                <div className="bg-background/30 px-12 py-6 border-t border-border animate-in slide-in-from-top-2 duration-300">
+                  <ul className="space-y-4">
+                    {cat.itens.map((item, i) => {
+                      const valorItemLimpo = parseValue(item.valor);
+                      return (
+                        <li key={i} className="flex justify-between text-sm border-b border-border/50 pb-3 last:border-0 last:pb-0">
+                          <span className="text-soft font-light italic">
+                            {item.desc}
+                          </span>
+                          <span className={`font-bold tracking-tight ${
+                            valorItemLimpo < 0 ? 'text-red-400' : 'text-main'
+                          }`}>
+                            {valorItemLimpo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

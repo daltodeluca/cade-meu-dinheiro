@@ -7,25 +7,31 @@ interface HeaderProps {
 
 export function Header({ darkMode, setDarkMode }: HeaderProps) {
   return (
-    <div className="flex justify-between items-center mb-10">
-      <div className="flex items-center gap-2">
-        <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-500/30">
-          <DollarSign className="text-white w-5 h-5" />
+    <div className="flex justify-between items-center mb-10 transition-colors duration-300">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-gold rounded-xl shadow-lg shadow-gold/20 transition-all">
+          <DollarSign className="text-white dark:text-background w-5 h-5" strokeWidth={3} />
         </div>
-        <span className="font-black text-slate-900 dark:text-white italic text-xl tracking-tight">
-          Cadê meu dinheiro?
-        </span>
+        
+        <div>
+          <span className="font-black text-main italic text-xl tracking-tighter">
+            Cadê meu <span className="text-gold">dinheiro?</span>
+          </span>
+          <p className="text-[9px] uppercase tracking-[0.3em] text-ghost font-bold -mt-1">
+            Financial Intelligence
+          </p>
+        </div>
       </div>
       
       <button 
         onClick={() => setDarkMode(!darkMode)}
-        className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm text-slate-500 transition-all hover:scale-110 active:scale-95"
+        className="p-2.5 bg-card border border-border rounded-2xl shadow-sm text-gold transition-all hover:scale-110 active:scale-95 group"
         title="Alternar tema"
       >
         {darkMode ? (
-          <Sun className="text-yellow-500" size={20} />
+          <Sun className="group-hover:rotate-90 transition-transform duration-500" size={20} />
         ) : (
-          <Moon className="text-slate-400" size={20} />
+          <Moon className="text-ghost group-hover:-rotate-12 transition-transform duration-500" size={20} />
         )}
       </button>
     </div>

@@ -22,7 +22,7 @@ export default function Home() {
   }, [darkMode]);
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 transition-colors">
+    <main className="min-h-screen bg-background dark:bg-background py-12 px-4 transition-colors">
       <div className="max-w-3xl mx-auto">
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
