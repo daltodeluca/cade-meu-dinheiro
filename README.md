@@ -54,4 +54,4 @@ O projeto foi refatorado para seguir padrões de mercado, separando as responsab
 /types: Contratos de dados para garantir que nada quebre.
 
 ## 📝 Licença
-Feito por Vinícius de Luca na InLuce Technologies.
+Feito por Dalto de Luca.
